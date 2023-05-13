@@ -1,4 +1,11 @@
 import './globals.css'
+import { Roboto } from 'next/font/google';
+
+const roboto_medium = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-roboto-medium',
+});
 
 export const metadata = {
   title: 'AI experience',
@@ -12,7 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${roboto_medium.variable} font-medium min-h-screen min-w-full`}>
+        <main className="container mx-auto">
+          {children}
+        </main>
+      </body>
     </html>
   )
 }
