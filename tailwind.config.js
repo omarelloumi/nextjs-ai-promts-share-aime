@@ -11,6 +11,7 @@ module.exports = {
         small: ['var(--font-roboto-small)'],
         medium: ['var(--font-roboto-medium)'],
         large: ['var(--font-roboto-large)'],
+        logo: ['var(--font-logo)'],
       },
     },
   },

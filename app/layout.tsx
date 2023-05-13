@@ -8,7 +8,7 @@ const roboto_medium = Roboto({
 });
 
 export const metadata = {
-  title: 'AI experience',
+  title: 'AI.me',
   description: 'App for sharing AI prompts and experiences',
 }
 
