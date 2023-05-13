@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Darumadrop_One } from 'next/font/google';
 
 const logo_font = Darumadrop_One({
@@ -33,9 +31,6 @@ const Logo = (props: Props) => {
             slogan = 'text-md'
             break;
     }
-
-    console.log(typeof props.slogan)
-
 
   return (
     <div className="flex flex-col items-center gap-0 w-fit logo">

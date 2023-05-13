@@ -1,3 +1,4 @@
+import Provider from '@/components/Provider';
 import './globals.css'
 import { Roboto } from 'next/font/google';
 
@@ -9,7 +10,7 @@ const roboto_medium = Roboto({
 
 export const metadata = {
   title: 'AI.me',
-  description: 'App for sharing AI prompts and experiences',
+  description: 'App for sharing AI prompts and experiences'
 }
 
 export default function RootLayout({
@@ -20,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto_medium.variable} font-medium min-h-screen min-w-full`}>
-        <main className="container mx-auto">
-          {children}
-        </main>
+        <Provider>
+          <main className="container mx-auto">
+            {children}
+          </main>
+        </Provider>
       </body>
     </html>
   )
