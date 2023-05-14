@@ -2,23 +2,23 @@ import mongoose from 'mongoose';
 
 let isConnected = false;
 
-export const connectToDB = async (): Promise<void> => {
+export const connectToDB = async (): Promise<boolean> => {
   mongoose.set('strictQuery', true);
 
   if (isConnected) {
     console.log('MongoDB is already connected');
-    return;
+    return true;
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI!, {
+    await mongoose.connect(process.env.MONGO_URI!, {
         dbName: "AIme"
     });
-
     isConnected = true;
-
-    console.log('MongoDB connected');
+    console.log('MongoDB is connected');
+    return isConnected;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
