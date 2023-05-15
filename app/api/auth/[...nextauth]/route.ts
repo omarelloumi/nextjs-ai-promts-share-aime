@@ -22,7 +22,7 @@ const handler = NextAuth({
         });
 
         const user = await res.json();
-        
+
         if (user) {
           return user;
         } else {
@@ -32,7 +32,12 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    session({ session, token, user }) {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+
+    async session({ session, token }) {
+      session.user = token as any;
       return session;
     },
   },

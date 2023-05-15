@@ -1,3 +1,4 @@
+import { signJwtAccessToken } from '@/utils/jwt';
 import User from '../../../models/user';
 import { connectToDB } from '../../../utils/database';
 import * as bcrypt from "bcrypt";
@@ -17,11 +18,15 @@ export async function POST(request: Request) {
   });
 
   if (user && (await bcrypt.compare(body.password, user.password))) {
-
-    const result = {
+    const userWithoutPass= {
         _id: user._id,
         name: user.name,
         email: user.email,
+    };
+    const token = signJwtAccessToken(userWithoutPass);
+    const result = {
+        ...userWithoutPass,
+        token,
     };
     return new Response(JSON.stringify(result), { status: 200 });
   } else return new Response(JSON.stringify(null), { status: 401 });
