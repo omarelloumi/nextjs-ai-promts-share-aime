@@ -33,7 +33,7 @@ const Logo = (props: Props) => {
     }
 
   return (
-    <div className="flex flex-col items-center gap-0 w-fit logo">
+    <div className="flex flex-col items-center gap-0 w-fit logo pb-3">
         <h1 className={`${logo_font.variable}  ${size} font-logo`}>AI.me</h1>
         {props.slogan && <span className={`${slogan} font-small`}>Share your AI prompts</span>}
     </div>
