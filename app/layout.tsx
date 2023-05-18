@@ -1,6 +1,7 @@
 import Provider from '@/components/Provider';
 import './globals.css'
 import { Roboto } from 'next/font/google';
+import Navbar from '@/components/Navbar';
 
 const roboto_medium = Roboto({
   weight: '400',
@@ -20,8 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${roboto_medium.variable} font-medium min-h-screen min-w-full`}>
+      <body className={`${roboto_medium.variable} font-medium min-h-screen min-w-full bg-white dark:bg-slate-200`}>
         <Provider>
+          <Navbar />
           <main className="container mx-auto">
             {children}
           </main>
