@@ -12,7 +12,7 @@ interface RegisterUser {
 }
 
 type Props = {
-  setModal: Function;
+  setAuthModal: Function;
 };
 
 const Register = (props: Props) => {
@@ -39,7 +39,7 @@ const Register = (props: Props) => {
         username: rest.email,
         password: rest.password,
       });
-      props.setModal(false);
+      props.setAuthModal("");
     }
     } catch (err: any) {
       setSubmitError(err.response.data.error);
@@ -48,13 +48,14 @@ const Register = (props: Props) => {
 
   const handleClose = (e: any) => {
     if (backdropRef.current === e.target) {
-      props.setModal();
+      props.setAuthModal("");
     }
   };
 
 
   return (
-    <div
+    <>
+      <div
       ref={backdropRef}
       onMouseDown={handleClose}
       className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen max-h-full flex justify-center items-center bg-black bg-opacity-30 backdrop-blur-sm"
@@ -63,7 +64,7 @@ const Register = (props: Props) => {
         {/* Modal content */}
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <button
-            onClick={() => props.setModal(false)}
+            onClick={() => props.setAuthModal("")}
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
           >
             <svg
@@ -183,18 +184,20 @@ const Register = (props: Props) => {
               </button>
               <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                 You have an account?{" "}
-                <a
-                  href="#"
+                <button
+                  onClick={() =>props.setAuthModal("login")}
                   className="text-purple-700 hover:underline dark:text-purple-500"
                 >
                   Login here
-                </a>
+                </button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 
