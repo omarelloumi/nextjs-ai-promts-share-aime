@@ -1,6 +1,12 @@
-import { Schema, model, models } from 'mongoose';
+import { Schema, model, models, Model, Document } from 'mongoose';
 
-const PromptSchema = new Schema({
+interface IPrompt extends Document {
+  creator: Schema.Types.ObjectId;
+  prompt: string;
+  tag: string;
+}
+
+const PromptSchema = new Schema<IPrompt>({
   creator: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -12,9 +18,9 @@ const PromptSchema = new Schema({
   tag: {
     type: String,
     required: [true, 'Tag is required.'],
-  }
+  },
 });
 
-const Prompt = models.Prompt || model('Prompt', PromptSchema);
+const Prompt: Model<IPrompt> = models.Prompt || model<IPrompt>('Prompt', PromptSchema);
 
 export default Prompt;
