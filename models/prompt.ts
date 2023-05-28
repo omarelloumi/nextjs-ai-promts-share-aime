@@ -3,7 +3,7 @@ import { Schema, model, models, Model, Document } from 'mongoose';
 interface IPrompt extends Document {
   creator: Schema.Types.ObjectId;
   prompt: string;
-  tag: string;
+  tags: string;
 }
 
 const PromptSchema = new Schema<IPrompt>({
@@ -15,7 +15,7 @@ const PromptSchema = new Schema<IPrompt>({
     type: String,
     required: [true, 'Prompt is required.'],
   },
-  tag: {
+  tags: {
     type: String,
     required: [true, 'Tag is required.'],
   },

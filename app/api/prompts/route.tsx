@@ -1,10 +1,10 @@
-import Prompt from "../../../../models/prompt";
-import { connectToDB } from "../../../../utils/database";
+import Prompt from "../../../models/prompt";
+import { connectToDB } from "../../../utils/database";
 
 interface RequestBody {
-    userId: string;
+    creator: string;
     prompt: string;
-    tag: string;
+    tags: string;
 }
 
 export const POST = async (request: Request) => {
@@ -12,7 +12,7 @@ export const POST = async (request: Request) => {
 
     try {
         await connectToDB();
-        const newPrompt = new Prompt({ creator: body.userId, prompt: body.prompt, tag: body.tag });
+        const newPrompt = new Prompt({ creator: body.creator, prompt: body.prompt, tags: body.tags });
 
         await newPrompt.save();
         return new Response(JSON.stringify(newPrompt), { status: 201 })
