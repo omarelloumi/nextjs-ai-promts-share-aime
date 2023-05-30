@@ -1,3 +1,5 @@
+"use client"
+
 import { useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
@@ -13,12 +15,12 @@ interface Prompt {
 
 type Props = {
     setAuthModal?: Function;
-    type: "Create" | "Update";
+    update?: Prompt;
 }
 
 const Prompt = (props: Props) => {
     const userId = useSession().data?.user?._id;
-    const [tags, setTags] = useState<string[]>([]);
+    const [tags, setTags] = useState<string[]>(props.update?.tags?.split(',') || []);
     const [tagsError, setTagsError] = useState(false);
 
     const {
@@ -28,7 +30,7 @@ const Prompt = (props: Props) => {
       } = useForm<Prompt>({
         mode: "onChange",
         defaultValues: {
-            prompt: "",
+            prompt: props.update?.prompt || "",
         },
     });
 
@@ -150,7 +152,7 @@ const Prompt = (props: Props) => {
                 type="submit"
                 className="w-full rounded-lg bg-purple-700 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-purple-300 enabled:hover:bg-purple-800 disabled:opacity-75 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
               >
-                {props.type}
+                {props.update ? "Update Prompt" : "Create Prompt"}
               </button>
             </form>
           </div>
