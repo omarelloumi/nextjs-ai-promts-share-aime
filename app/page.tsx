@@ -1,11 +1,9 @@
 "use client"
 
-import Prompt from "@/components/forms/Prompt";
+import Feed from "@/components/Feed";
 
 export default function Home() {
   return (
-    <>
-      <Prompt type="Create" />
-    </>
+    <Feed />
   )
 }
